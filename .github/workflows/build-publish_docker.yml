@@ -32,17 +32,17 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y nodejs npm
           npm install snyk -g
-          snyk auth <your-auth-token>
+          snyk auth ${{ secrets.SNYK_AUTH }}
           snyk test
 
       - name: Install NPM dependencies
         run: |
-          cd /path/to/your/project
+          # cd /path/to/your/project
           npm install
 
       - name: Test NPM installation
         run: |
-          cd /path/to/your/project
+          # cd /path/to/your/project
           npm test
 
       - name: Build and publish Docker image to Docker Hub
@@ -51,4 +51,4 @@ jobs:
           context: .
           push: true
           tags: |
-            your-dockerhub-username/your-docker-image-name:${{ github.sha }}
+            natep18f/testing-npm-build:${{ github.sha }}
