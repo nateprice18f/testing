@@ -1,0 +1,54 @@
+# To create a GitHub action flow that lints Dockerfile using Hadolint, pulls Ubuntu container image from Docker Hub, 
+# performs Snyk security scan step, installs npm step, tests npm installation step and publishes image to Docker Hub, 
+# you can follow the steps below:
+# - Create a new GitHub repository and navigate to the Actions tab.
+# - Create a new workflow file under .github/workflows/main.yml.
+# - Add the following code to the file:
+
+name: Build and Publish Docker Image
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+
+      - name: Pull Ubuntu image from Docker Hub
+        run: docker pull ubuntu
+
+      - name: Snyk security scan
+        run: |
+          sudo apt-get update && sudo apt-get install -y nodejs npm
+          npm install snyk -g
+          snyk auth <your-auth-token>
+          snyk test
+
+      - name: Install NPM dependencies
+        run: |
+          cd /path/to/your/project
+          npm install
+
+      - name: Test NPM installation
+        run: |
+          cd /path/to/your/project
+          npm test
+
+      - name: Build and publish Docker image to Docker Hub
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: .
+          push: true
+          tags: |
+            your-dockerhub-username/your-docker-image-name:${{ github.sha }}
