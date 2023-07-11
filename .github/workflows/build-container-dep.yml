@@ -2,9 +2,9 @@ name: Container-dep workflow
 
 on:
   push:
-    branches: [ container-build ]
+    branches: [ container-install-npm ]
   pull_request:
-    branches: [ container-build ]
+    branches: [ container-install-npm ]
 
 jobs:
   build:
