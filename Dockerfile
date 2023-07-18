@@ -4,8 +4,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl=7.81.0-1ub
     && apt-get clean && rm -rf /var/lib/apt/lists/*
     
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
-    apt-get install -y --no-install-recommends -y nodejs=18.15.0* \
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - 
+RUN apt-get install -y --no-install-recommends -y nodejs=18.15.0* \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN node --version
