@@ -1,6 +1,6 @@
 FROM natep18f/container-test-npm:8736078fd182a8115f284ec833f4de5c0cd162aa
 
-RUN apt-get update && apt-get install -y --no-install-recommends npm \
+RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm \
     && apt-get clean && rm -rf /var/lib/apt/lists/* 
 RUN npm install -g pa11y @axe-core/cli
 
