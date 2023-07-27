@@ -1,7 +1,7 @@
 FROM natep18f/container-test:e58850734e400aaca7f57e22ce6e1dfc6eb86437
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN apt-get install -y --no-install-recommends curl dirmngr apt-transport-https lsb-release ca-certificates \
+RUN sudo apt-get install -y --no-install-recommends curl dirmngr apt-transport-https lsb-release ca-certificates \
    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
