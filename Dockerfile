@@ -4,12 +4,12 @@ FROM natep18f/container-test:32d8d530ce76b52e82526b38edce1f43d52a5fa9
 #FROM natep18f/container-test:e58850734e400aaca7f57e22ce6e1dfc6eb86437
 
 
-RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm \
+RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm puppeteer \
     && apt-get clean && rm -rf /var/lib/apt/lists/* 
 RUN npm install -g pa11y 
 #@axe-core/cli
 
-#RUN pa11ly -V 
+RUN pa11ly -V 
 # && axe -V
 
 #SHELL ["/bin/bash", "-o", "pipefail", "-c"]
