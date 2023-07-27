@@ -1,11 +1,19 @@
 FROM natep18f/container-test:e58850734e400aaca7f57e22ce6e1dfc6eb86437
 
-RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* 
-RUN npm install -g pa11y 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN apt-get install -y --no-install-recommends curl dirmngr apt-transport-https lsb-release ca-certificates \
+   && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+
+
+
+#RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm \
+#    && apt-get clean && rm -rf /var/lib/apt/lists/* 
+#RUN npm install -g pa11y 
 #@axe-core/cli
 
-RUN pa11ly -V 
+#RUN pa11ly -V 
 # && axe -V
 
 #RUN npm config set strict-ssl false \
