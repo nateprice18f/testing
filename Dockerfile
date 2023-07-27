@@ -1,7 +1,7 @@
 #FROM ubuntu:22.04
 #Version change to support pa11ly dev container demo
 
-FROM ubuntu:18:04
+FROM ubuntu:18.04
 
 LABEL maintainer="natep18f"
 LABEL description="Ubuntu 18.04 Container Build"
