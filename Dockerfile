@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm \
 RUN npm install -g puppeteer pa11y 
 #@axe-core/cli
 
-RUN pa11ly -V 
+#RUN pa11ly -V 
 # && axe -V
 
 #SHELL ["/bin/bash", "-o", "pipefail", "-c"]
