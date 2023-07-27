@@ -4,13 +4,18 @@ FROM natep18f/container-test:32d8d530ce76b52e82526b38edce1f43d52a5fa9
 #FROM natep18f/container-test:e58850734e400aaca7f57e22ce6e1dfc6eb86437
 
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-khmeros fonts-kacst fonts-freefont-ttf libxss1 nodejs npm \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* 
+RUN apt-get update && apt-get install -y wget gnupg \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/googlechrome-linux-keyring.gpg \
+    && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrome-linux-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-khmeros fonts-kacst fonts-freefont-ttf libxss1 nodejs npm  \
+      --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN npm install -g puppeteer pa11y 
 #@axe-core/cli
 
-#RUN pa11ly -V 
+CMD pa11ly -V 
 # && axe -V
 
 #SHELL ["/bin/bash", "-o", "pipefail", "-c"]
