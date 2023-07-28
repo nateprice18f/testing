@@ -13,11 +13,11 @@ RUN apt-get update && apt-get install -y wget gnupg \
     && rm -rf /var/lib/apt/lists/*
 
 
-RUN npm install -g pa11y \
+#RUN npm install -g pa11y \
 # Install puppeteer so it's available in the container.
-#RUN npm init -y &&  \
+RUN npm init -y &&  \
     && npm init -y &&  \
-    npm i puppeteer \
+    npm i pa11y puppeteer \
     # Add user so we don't need --no-sandbox.
     # same layer as npm install to keep re-chowned files from using up several hundred MBs more space
     && groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
