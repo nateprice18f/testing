@@ -17,7 +17,6 @@ RUN apt-get update && apt-get install -y wget gnupg \
 #RUN npm install -g pa11y \
 # Install puppeteer so it's available in the container.
 RUN npm init -y &&  \
-    && npm init -y &&  \
     npm i pa11y puppeteer \
     # Add user so we don't need --no-sandbox.
     # same layer as npm install to keep re-chowned files from using up several hundred MBs more space
