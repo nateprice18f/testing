@@ -3,7 +3,7 @@ FROM natep18f/container-test:32d8d530ce76b52e82526b38edce1f43d52a5fa9
 #ubuntu 20.04
 #FROM natep18f/container-test:e58850734e400aaca7f57e22ce6e1dfc6eb86437
 
-#WORKDIR 
+WORKDIR /home/pptruser
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
