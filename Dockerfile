@@ -10,23 +10,24 @@ RUN apt-get update && apt-get install -y wget gnupg \
     && apt-get update \
     && apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-khmeros fonts-kacst fonts-freefont-ttf libxss1 libxshmfence-dev nodejs npm  \
       --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/* \
-    && groupadd -r pptruser && useradd -rm -g pptruser -G audio,video pptruser
+    && rm -rf /var/lib/apt/lists/*
 
+
+RUN npm install -g pa11y \
+# Install puppeteer so it's available in the container.
+#RUN npm init -y &&  \
+    && npm init -y &&  \
+    npm i puppeteer \
+    # Add user so we don't need --no-sandbox.
+    # same layer as npm install to keep re-chowned files from using up several hundred MBs more space
+    && groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
+    && mkdir -p /home/pptruser/Downloads \
+    && chown -R pptruser:pptruser /home/pptruser \
+    && chown -R pptruser:pptruser /node_modules \
+    && chown -R pptruser:pptruser /package.json \
+    && chown -R pptruser:pptruser /package-lock.json
+
+# Run everything after as non-privileged user.
 USER pptruser
-
-WORKDIR /home/pptruser
-
-RUN npm install -g puppeteer pa11y \
-    && (node -e "require('child_process').execSync(require('puppeteer').executablePath() + ' --credits', {stdio: 'inherit'})" > THIRD_PA
-# @axe-core/cli
-
-#COPY puppeteer-browsers-latest.tgz puppeteer-latest.tgz puppeteer-core-latest.tgz ./
-
-# Install @puppeteer/browsers, puppeteer and puppeteer-core into /home/pptruser/node_modules.
-#RUN npm i pa11y \
-#    && ./puppeteer-browsers-latest.tgz ./puppeteer-core-latest.tgz ./puppeteer-latest.tgz \
-#    && rm ./puppeteer-browsers-latest.tgz ./puppeteer-core-latest.tgz ./puppeteer-latest.tgz \
-#    && (node -e "require('child_process').execSync(require('puppeteer').executablePath() + ' --credits', {stdio: 'inherit'})" > THIRD_PARTY_NOTICES)
 
 CMD ["google-chrome-stable"]
