@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y wget gnupg \
     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/googlechrome-linux-keyring.gpg \
     && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrome-linux-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
     && apt-get update \
-    && apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-khmeros fonts-kacst fonts-freefont-ttf libxss1 nodejs npm  \
+    && apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-khmeros fonts-kacst fonts-freefont-ttf libxss1 libxshmfence-dev nodejs npm  \
       --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
@@ -24,14 +24,11 @@ CMD pa11ly -V
 
 #RUN curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
-
-
 #RUN npm config set strict-ssl false \
 #    && npm install -g pa11y @axe-core/cli
 
 # RUN apt-get update && apt-get install -y --no-install-recommends nodejs=12.22.9~dfsg-1ubuntu3 \
 #    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
 
 # RUN apt-get update && apt-get install -y --no-install-recommends curl=7.81.0-1ubuntu1.10 \
 #    && apt-get clean && rm -rf /var/lib/apt/lists/*
