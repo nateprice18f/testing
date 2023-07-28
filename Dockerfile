@@ -10,32 +10,21 @@ RUN apt-get update && apt-get install -y wget gnupg \
     && apt-get update \
     && apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-khmeros fonts-kacst fonts-freefont-ttf libxss1 libxshmfence-dev nodejs npm  \
       --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && groupadd -r pptruser && useradd -rm -g pptruser -G audio,video pptruser
 
-RUN npm install -g puppeteer pa11y 
-#@axe-core/cli
+USER pptruser
 
-CMD pa11ly -V 
-# && axe -V
+WORKDIR /home/pptruser
 
-#SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-#RUN sudo apt-get install -y --no-install-recommends curl dirmngr apt-transport-https lsb-release ca-certificates \
-#   && apt-get clean && rm -rf /var/lib/apt/lists/*
+# RUN npm install -g puppeteer pa11y @axe-core/cli
 
-#RUN curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+COPY puppeteer-browsers-latest.tgz puppeteer-latest.tgz puppeteer-core-latest.tgz ./
 
-#RUN npm config set strict-ssl false \
-#    && npm install -g pa11y @axe-core/cli
+# Install @puppeteer/browsers, puppeteer and puppeteer-core into /home/pptruser/node_modules.
+RUN npm i pa11y \
+    && ./puppeteer-browsers-latest.tgz ./puppeteer-core-latest.tgz ./puppeteer-latest.tgz \
+    && rm ./puppeteer-browsers-latest.tgz ./puppeteer-core-latest.tgz ./puppeteer-latest.tgz \
+    && (node -e "require('child_process').execSync(require('puppeteer').executablePath() + ' --credits', {stdio: 'inherit'})" > THIRD_PARTY_NOTICES)
 
-# RUN apt-get update && apt-get install -y --no-install-recommends nodejs=12.22.9~dfsg-1ubuntu3 \
-#    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# RUN apt-get update && apt-get install -y --no-install-recommends curl=7.81.0-1ubuntu1.10 \
-#    && apt-get clean && rm -rf /var/lib/apt/lists/*
-    
-# SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-# RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - 
-# RUN apt-get install -y --no-install-recommends -y nodejs=18.15.0* \
-#    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-#RUN node --version
+CMD ["google-chrome-stable"]
