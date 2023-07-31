@@ -1,7 +1,6 @@
 #Ubuntu 22.10 with nodejs 18 and npm 8 installed 
 FROM natep18f/container-test-npm:5933141d6fe06afd0d0efb0407894b99327f6c6a
 
-WORKDIR /tmp/downloads
 #ubuntu 22.04 with nodejs installed 
 #FROM natep18f/container-test-npm:4e11e29390731f128726d4e0fc936c04e13e6e75
 #ubuntu 22.04 without nodejs installed 
@@ -32,7 +31,7 @@ RUN apt-get update && apt-get install -y wget gnupg curl \
 #RUN npm install -g pa11y \
 # Install puppeteer so it's available in the container.
 RUN npm init -y \
-    && npm i puppeteer pa11y \
+    && npm i puppeteer \
 #RUN npm install -g puppeteer pa11y \
     # Add user so we don't need --no-sandbox.
     # same layer as npm install to keep re-chowned files from using up several hundred MBs more space
