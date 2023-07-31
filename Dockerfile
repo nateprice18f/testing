@@ -1,7 +1,7 @@
 #Ubuntu 22.10 with nodejs 18 and npm 8 installed 
 FROM natep18f/container-test-npm:5933141d6fe06afd0d0efb0407894b99327f6c6a
 
-WORKDIR /tmp/Downloads
+WORKDIR /tmp/downloads
 #ubuntu 22.04 with nodejs installed 
 #FROM natep18f/container-test-npm:4e11e29390731f128726d4e0fc936c04e13e6e75
 #ubuntu 22.04 without nodejs installed 
@@ -40,8 +40,8 @@ RUN npm init -y \
     && mkdir -p /home/pptruser/Downloads \
     && chown -R pptruser:pptruser /home/pptruser \
     && chown -R pptruser:pptruser /node_modules \
-   # && chown -R pptruser:pptruser /package.json \
-   # && chown -R pptruser:pptruser /package-lock.json
+    && chown -R pptruser:pptruser /package.json \
+    && chown -R pptruser:pptruser /package-lock.json
 
 # Run everything after as non-privileged user.
 USER pptruser
