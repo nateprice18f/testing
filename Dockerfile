@@ -1,6 +1,9 @@
-#ubuntu 22.04 with nodejs installed image
+#Ubuntu 22.10 with nodejs 18 and npm 8 installed 
+FROM natep18f/container-test-npm:5933141d6fe06afd0d0efb0407894b99327f6c6a
+
+#ubuntu 22.04 with nodejs installed 
 FROM natep18f/container-test-npm:4e11e29390731f128726d4e0fc936c04e13e6e75
-#ubuntu 22.04
+#ubuntu 22.04 without nodejs installed 
 #FROM natep18f/container-test:32d8d530ce76b52e82526b38edce1f43d52a5fa9
 #ubuntu 20.04
 #FROM natep18f/container-test:e58850734e400aaca7f57e22ce6e1dfc6eb86437
