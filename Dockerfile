@@ -8,7 +8,7 @@ FROM natep18f/container-test-npm:5933141d6fe06afd0d0efb0407894b99327f6c6a
 #ubuntu 20.04
 #FROM natep18f/container-test:e58850734e400aaca7f57e22ce6e1dfc6eb86437
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+#SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 #RUN apt-get update && apt-get install -y wget gnupg curl \
 #    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
