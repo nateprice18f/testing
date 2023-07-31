@@ -1,6 +1,7 @@
 #Ubuntu 22.10 with nodejs 18 and npm 8 installed 
 FROM natep18f/container-test-npm:5933141d6fe06afd0d0efb0407894b99327f6c6a
 
+WORKDIR /tmp/Downloads
 #ubuntu 22.04 with nodejs installed 
 #FROM natep18f/container-test-npm:4e11e29390731f128726d4e0fc936c04e13e6e75
 #ubuntu 22.04 without nodejs installed 
