@@ -8,7 +8,8 @@ FROM natep18f/container-test-npm:5933141d6fe06afd0d0efb0407894b99327f6c6a
 #ubuntu 20.04
 #FROM natep18f/container-test:e58850734e400aaca7f57e22ce6e1dfc6eb86437
 
-#SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 #RUN apt-get update && apt-get install -y wget gnupg curl \
 #    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
 #    && curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
@@ -20,9 +21,9 @@ FROM natep18f/container-test-npm:5933141d6fe06afd0d0efb0407894b99327f6c6a
 
 #RUN npm install -g pa11y \
 # Install puppeteer so it's available in the container.
-RUN npm init -y \
-    && npm i puppeteer pa11y \
-# RUN npm install -g puppeteer pa11y \
+#RUN npm init -y \
+#    && npm i puppeteer pa11y \
+ RUN npm install -g puppeteer pa11y \
     # Add user so we don't need --no-sandbox.
     # same layer as npm install to keep re-chowned files from using up several hundred MBs more space
     && groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
