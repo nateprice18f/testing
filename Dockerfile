@@ -1,5 +1,5 @@
 #ubuntu 22.04 with nodejs installed image
-FROM natep18f/container-test-npm:8736078fd182a8115f284ec833f4de5c0cd162aa
+FROM natep18f/container-test-npm:4e11e29390731f128726d4e0fc936c04e13e6e75
 #ubuntu 22.04
 #FROM natep18f/container-test:32d8d530ce76b52e82526b38edce1f43d52a5fa9
 #ubuntu 20.04
