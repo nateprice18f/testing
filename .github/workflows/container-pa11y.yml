@@ -1,4 +1,4 @@
-name: Container-dep workflow
+name: Pa11y Container workflow
 
 on:
   push:
