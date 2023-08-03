@@ -1,4 +1,4 @@
-FROM ubuntu:22.10
+FROM natep18f/container-test:32d8d530ce76b52e82526b38edce1f43d52a5fa9
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
