@@ -1,10 +1,10 @@
-name: Pa11y Container workflow
+name: Nodejs-app Container workflow
 
 on:
   push:
-    branches: [ container-pa11y ]
+    branches: [ container-nodejs-app ]
   pull_request:
-    branches: [ container-pa11y ]
+    branches: [ container-nodejs-app ]
 
 jobs:
   build:
