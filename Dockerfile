@@ -1,5 +1,7 @@
 FROM ubuntu:22.10
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 RUN apt-get update && \
     apt-get install -y curl && \
     curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
@@ -14,7 +16,5 @@ EXPOSE 8000
 CMD ["/opt/pa11y-dashboard/bin/pa11y-dashboard"]
 #Ubuntu 22.10 with nodejs 18 and npm 8 installed 
 #FROM natep18f/container-nodejs-tools:281065cd3d13dcb0d65efae6d63624d5c09515ac
-
-#SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 #RUN npm install -g pa11y 
