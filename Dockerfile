@@ -5,7 +5,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update && \
     apt-get install -y curl && \
     curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
-    #apt-get install -y nodejs && \
     apt-get install -y libx11-xcb1 libxcb-dri3-0 libxt6 libgbm1 && \
     curl -L https://github.com/pa11y/pa11y-dashboard/archive/refs/tags/3.3.0.tar.gz | tar zxvf - && \
     mv pa11y-dashboard-3.3.0 /opt/pa11y-dashboard && \
