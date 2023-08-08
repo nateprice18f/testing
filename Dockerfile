@@ -10,7 +10,7 @@ RUN apt-get update && \
     curl -L https://github.com/pa11y/pa11y-dashboard/archive/refs/tags/3.3.0.tar.gz | tar zxvf - && \
     mv pa11y-dashboard-3.3.0 /opt/pa11y-dashboard && \
     cd /opt/pa11y-dashboard && \
-    npm install \
+    npm install && \
     rm -rf /var/lib/apt/lists/*
 
 
