@@ -13,7 +13,7 @@ RUN apt-get update && \
 
 EXPOSE 8000
 
-CMD ["/opt/pa11y-dashboard/bin/pa11y-dashboard"]
+CMD ["/opt/pa11y-dashboard"]
 #Ubuntu 22.10 with nodejs 18 and npm 8 installed 
 #FROM natep18f/container-nodejs-tools:281065cd3d13dcb0d65efae6d63624d5c09515ac
 
