@@ -1,0 +1,47 @@
+name: Build and Publish Docker Image
+
+on:
+  push:
+    branches: [ container-mongodb ]
+  pull_request:
+    branches: [ container-mongodb ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+
+      - name: Pull Ubuntu image from Docker Hub
+        run: docker pull ubuntu
+
+      - name: Snyk security scan
+        run: |
+          sudo apt-get update && sudo apt-get install -y nodejs npm
+          npm install snyk -g
+          snyk auth <your-auth-token>
+          snyk test
+
+      - name: Install NPM dependencies
+        run: |
+          cd /path/to/your/project
+          npm install
+
+      - name: Test NPM installation
+        run: |
+          cd /path/to/your/project
+          npm test
+
+      - name: Build and publish Docker image to Docker Hub
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: .
+          push: true
+          tags: |
+            your-dockerhub-username/container-mongodb-test:${{ github.sha }}
