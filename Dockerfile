@@ -12,4 +12,4 @@ WORKDIR /app
 
 EXPOSE 3031
 
-CMD ["node", "server.js"]
+CMD ["node", "app.js"]
