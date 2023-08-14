@@ -1,7 +1,7 @@
 FROM node:14
 
 RUN apt-get update && \
-    apt-get install -y git
+    apt-get install -y git libnss3 libgconf-2-4
 
 RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
 
@@ -13,8 +13,8 @@ EXPOSE 3000
 
 #CMD ["pa11y-dashboard", "--config", "production.json"]
 
-CMD ["npm", "start"]
-#CMD ["NODE_ENV=production", "npm", "start"]
+#CMD ["npm", "start"]
+CMD ["NODE_ENV=production", "npm", "start"]
 
 
 #FROM natep18f/container-test:32d8d530ce76b52e82526b38edce1f43d52a5fa9
