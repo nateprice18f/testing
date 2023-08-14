@@ -1,4 +1,5 @@
-FROM natep18f/container-mongodb-test:c72ce6235c02d152dd7bf356cbd5f0ed1e796534
+#Mongodb 4.4
+FROM natep18f/container-mongodb-test:d9fbb461f58a58a286fcc89dde059174a06a1981
 
 WORKDIR /data/db
 
