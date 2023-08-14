@@ -11,10 +11,10 @@ RUN npm install
 
 EXPOSE 3000
 
-#CMD ["pa11y-dashboard", "--config", "production.json"]
+CMD [ "--config", "production.json"]
 
 #CMD ["npm", "start"]
-CMD ["NODE_ENV=production", "npm", "start"]
+#CMD ["NODE_ENV=production", "npm", "start"]
 
 
 #FROM natep18f/container-test:32d8d530ce76b52e82526b38edce1f43d52a5fa9
