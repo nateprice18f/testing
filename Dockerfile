@@ -1,5 +1,5 @@
 #MongoDB container 
-FROM mongo:7.0-rc-jammy
+FROM mongo:4.4
 
 LABEL maintainer="natep18f"
 LABEL description="MongoDB Container"
