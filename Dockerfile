@@ -33,9 +33,10 @@ RUN npm init -y &&  \
     && chown -R pptruser:pptruser /home/pptruser \
     && chown -R pptruser:pptruser /node_modules \
     && chown -R pptruser:pptruser /package.json \
-    && chown -R pptruser:pptruser /package-lock.json \
-    && mkdir -p /pa11y-dashboard \
-    && mkdir -p /pa11y-webservice \
+    && chown -R pptruser:pptruser /package-lock.json 
+    
+RUN mkdir /pa11y-dashboard \
+    && mkdir /pa11y-webservice \
     && chown -R pptruser:pptruser /pa11y-dashboard \
     && chown -R pptruser:pptruser /pa11y-webservice \
     
