@@ -38,7 +38,7 @@ RUN npm init -y &&  \
 RUN mkdir /pa11y-dashboard \
     && mkdir /pa11y-webservice \
     && chown -R pptruser:pptruser /pa11y-dashboard \
-    && chown -R pptruser:pptruser /pa11y-webservice \
+    && chown -R pptruser:pptruser /pa11y-webservice 
     
 
 # Run everything after as non-privileged user.
