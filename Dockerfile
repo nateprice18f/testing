@@ -1,21 +1,20 @@
-#FROM natep18f/container-puppeteer:bc7cb70d194d39b6de916aa2001569dd705c2e48
-FROM node:14
+FROM natep18f/container-puppeteer:bc7cb70d194d39b6de916aa2001569dd705c2e48
 
-RUN apt-get update && apt-get install -y git 
+RUN npm install -g pa11y
 
-SHELL ["/bin/bash", "-c"]
+RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
+
+COPY production.json /pa11y-webservice/config
 
 WORKDIR /pa11y-webservice
 
-RUN npm install puppeteer -unsafe-perm-true --allow-root
-RUN npm install pa11y
-RUN git clone https://github.com/pa11y/pa11y-webservice.git /pa11y-webservice
 
-COPY production.json /pa11y-webservice/config
 RUN npm install
 
 EXPOSE 3000
 
-CMD ["NODE_ENV=production","npm", "start"]
+CMD ["npm", "start"]
+
+#CMD ["NODE_ENV=production","npm", "start"]
 #CMD ["npm", "start"]
 #CMD ["node", "index.js", "production.json"]
