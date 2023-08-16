@@ -10,6 +10,6 @@ RUN npm install
 
 EXPOSE 3000
 
-CMD ["NODE_ENV=production","npm", "start"]
-#CMD ["npm", "start"]
+#CMD ["NODE_ENV=production","npm", "start"]
+CMD ["npm", "start"]
 #CMD ["node", "index.js", "production.json"]
