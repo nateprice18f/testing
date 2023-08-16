@@ -1,10 +1,10 @@
 FROM node:14
 
-SHELL ["/bin/bash", "-c"]
+#SHELL ["/bin/bash", "-c"]
 
 RUN npm install -g puppeteer@9.1.1 pa11y pa11y-webservice
 
-RUN apt-get update && apt-get install -y chromium && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get install -y chromium && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /pa11y-webservice
 
