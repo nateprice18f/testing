@@ -1,6 +1,8 @@
 #FROM natep18f/container-puppeteer:bc7cb70d194d39b6de916aa2001569dd705c2e48
 FROM ubuntu:20.04
 
+SHELL ["/bin/bash", "-c"]
+
 RUN apt-get update && apt-get install -y curl 
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
