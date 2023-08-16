@@ -1,6 +1,8 @@
 #FROM natep18f/container-puppeteer:bc7cb70d194d39b6de916aa2001569dd705c2e48
 FROM node:14
 
+RUN apt-get update && apt-get install -y git 
+
 SHELL ["/bin/bash", "-c"]
 
 WORKDIR /pa11y-webservice
