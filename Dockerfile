@@ -8,9 +8,9 @@ RUN apt-get update && apt-get install -y chromium && rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g pa11y pa11y-webservice
 
-WORKDIR /pa11y-webservice
+#WORKDIR /pa11y-webservice
 
-COPY production.json /pa11y-webservice/config
+#COPY production.json /pa11y-webservice/config
 
 EXPOSE 3000
 
