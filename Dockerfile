@@ -10,7 +10,7 @@ RUN apt-get update && \
     curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs
 
-RUN npm install -g pa11y
+RUN npm install pa11y
 
 RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
 RUN git clone https://github.com/pa11y/pa11y-webservice.git /pa11y-webservice
