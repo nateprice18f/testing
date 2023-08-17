@@ -2,8 +2,7 @@ FROM ubuntu:20.04
 
 SHELL ["/bin/bash", "-c"]
 
-RUN apt-get update && \
-    apt-get install -y git curl libnss3 libgconf-2-4 ca-certificate
+RUN apt-get update && apt-get install -y git curl libnss3 libgconf-2-4 ca-certificate
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - 
 RUN cat /etc/apt/sources.list.d/nodesource.list
