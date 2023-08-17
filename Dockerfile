@@ -1,11 +1,22 @@
-FROM node:14
+FROM ubuntu:20.04
+
+SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update && \
-    apt-get install -y git libnss3 libgconf-2-4
+    apt-get install -y git curl libnss3 libgconf-2-4 ca-certificate
+
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - 
+RUN cat /etc/apt/sources.list.d/nodesource.list
+RUN deb https://deb.nodesource.com/node_14.x focal main
+RUN deb-src https://deb.nodesource.com/node_14.x focal main
+RUN apt install -y nodejs
+
+RUN npm install -g pa11y
 
 RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
+RUN git clone https://github.com/pa11y/pa11y-webservice.git /pa11y-webservice
 
-WORKDIR /pa11y-dashboard
+WORKDIR /app
 
 RUN npm install
 
