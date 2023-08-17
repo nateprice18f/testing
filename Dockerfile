@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 
-RUN DEBIAN_FRONTEND=noninteractive TZ=America/New_York
+ENV TZ=America/New_York
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 SHELL ["/bin/bash", "-c"]
 
