@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-ENV TZ=America/New_York
+RUN DEBIAN_FRONTEND=noninteractive TZ=America/New_York
 
 SHELL ["/bin/bash", "-c"]
 
