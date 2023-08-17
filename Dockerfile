@@ -2,13 +2,10 @@ FROM ubuntu:20.04
 
 SHELL ["/bin/bash", "-c"]
 
-RUN apt-get update && apt-get install -y git curl libnss3 libgconf-2-4 ca-certificate
-
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - 
-RUN cat /etc/apt/sources.list.d/nodesource.list
-RUN deb https://deb.nodesource.com/node_14.x focal main
-RUN deb-src https://deb.nodesource.com/node_14.x focal main
-RUN apt install -y nodejs
+RUN apt-get update && \
+    apt-get install -y git curl libnss3 libgconf-2-4 ca-certificate && \
+    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+    apt-get install -y nodejs
 
 RUN npm install -g pa11y
 
