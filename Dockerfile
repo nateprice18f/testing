@@ -3,6 +3,8 @@ FROM ubuntu:20.04
 ENV TZ=America/New_York
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+ENV NODE_ENV=production
+
 SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update && \
