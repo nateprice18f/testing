@@ -12,10 +12,10 @@ RUN apt-get update && \
 
 RUN npm install pa11y
 
-RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
+#RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
 RUN git clone https://github.com/pa11y/pa11y-webservice.git /pa11y-webservice
 
-WORKDIR /app
+WORKDIR /pa11y-webservice
 
 RUN npm install
 
