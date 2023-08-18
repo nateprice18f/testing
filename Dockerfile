@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:14
 
 RUN apt-get update && apt-get install -y git libx11-xcb1 libxtst6 libnss1 libasound2 libgtk-3-0 libnss3 libgconf-2-4 && rm -rf /var/lib/apt/list/*
 
