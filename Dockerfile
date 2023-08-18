@@ -21,11 +21,11 @@ WORKDIR /pa11y-webservice
 
 RUN npm install
 
-EXPOSE 3000
+EXPOSE 3000:3000
 
 #CMD [ "--config", "production.json"]
 
-#CMD ["npm", "start"]
+CMD ["npm", "start"]
 #CMD ["NODE_ENV=production", "npm", "start"]
 
 
