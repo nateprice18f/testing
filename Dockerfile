@@ -25,7 +25,7 @@ EXPOSE 3000
 
 #CMD [ "--config", "production.json"]
 
-CMD ["npm", "start"]
+#CMD ["npm", "start"]
 #CMD ["NODE_ENV=production", "npm", "start"]
 
 
