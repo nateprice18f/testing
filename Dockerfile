@@ -1,53 +1,22 @@
-FROM ubuntu:20.04
-
-ENV TZ=America/New_York
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-#ENV NODE_ENV=production
-
-SHELL ["/bin/bash", "-c"]
+FROM node:12
 
 RUN apt-get update && \
-    apt-get install -y git curl libnss3 libgconf-2-4 && \
-    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
-    apt-get install -y nodejs
+    apt-get install -y git libx11-xcb1 libxtst6 libnss1 libasound2 libgtk-3-0 libnss3 libgconf-2-4 && \
+    rm -rf /var/lib/apt/list/*
 
-RUN npm install pa11y
+EXPOSE 4000
 
-#RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
-RUN git clone https://github.com/pa11y/pa11y-webservice.git /pa11y-webservice
+EXPOSE 3000
 
-WORKDIR /pa11y-webservice
+USER node
+WORKDIR /home/node
 
-RUN npm install
+RUN git clone https://github.com/pa11y/pa11y-dashboard.git pa11y-dashboard \
+    && cd pa11y-dashboard \
+    && npm install
 
-EXPOSE 3000:3000
+ENV NODE_ENV production
 
-#CMD [ "--config", "production.json"]
-
-CMD ["npm", "start"]
-#CMD ["NODE_ENV=production", "npm", "start"]
-
-
-#FROM natep18f/container-test:32d8d530ce76b52e82526b38edce1f43d52a5fa9
-
-#SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
-#RUN apt-get update && \
-#    apt-get install -y curl && \
-#    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
-#    apt-get install -y libx11-xcb1 libxcb-dri3-0 libxt6 libgbm1 && \
-#    curl -L https://github.com/pa11y/pa11y-dashboard/archive/refs/tags/3.3.0.tar.gz | tar zxvf - && \
-#    mv pa11y-dashboard-3.3.0 /opt/pa11y-dashboard && \
-#    cd /opt/pa11y-dashboard && \
-#    npm install && \
-#    rm -rf /var/lib/apt/lists/*
-
-
-#EXPOSE 8888
-
-#CMD ["/opt/pa11y-dashboard"]
-#Ubuntu 22.10 with nodejs 18 and npm 8 installed 
-#FROM natep18f/container-nodejs-tools:281065cd3d13dcb0d65efae6d63624d5c09515ac
-
-#RUN npm install -g pa11y 
+WORKDIR pa11y-dashboard
+CMD ["start"]
+ENTRYPOINT ["npm"] 
