@@ -11,7 +11,7 @@ RUN curl -fsSL https://pgp.mongodb.com/server-4.4.asc | \
     --dearmor
 RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
     
-RUN sudo apt-get update && \
+RUN apt-get update && \
     apt-get install -y mongodb-org && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
     
