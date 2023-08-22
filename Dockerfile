@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV TZ=America/New_York
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -6,20 +6,22 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt-get update && \
-    apt-get install -y curl git gnupg gnupg2 gnupg1 
+    apt-get install -y curl git gnupg 
 
-RUN curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - 
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - 
 
-RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 
 RUN apt-get update && \
-    apt install -y mongodb-org
+    #apt install -y mongodb-org
+    apt-get install -y mongodb-org mongodb-org-server mongodb-org-shell mongodb-org-mongos mongodb-org-tools
     #apt-get install -y mongodb-org=4.4.1 mongodb-org-server=4.4.1 mongodb-org-shell=4.4.1 mongodb-org-mongos=4.4.1 mongodb-org-tools=4.4.1
-
-EXPOSE 27017
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get -y install nodejs && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN npm install 
+
+EXPOSE 27017
 CMD ["mongod"]
