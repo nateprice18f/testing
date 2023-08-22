@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM mongodb/mongodb-community-server:4.4.23-ubuntu2004
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
