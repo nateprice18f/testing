@@ -1,5 +1,5 @@
 #Mongodb 4.4
-FROM mongo:4.4-rc
+FROM mongodb/mongodb-community-server:4.4.23-ubuntu2004
 
 #FROM ubuntu:20.04
 #SHELL ["/bin/bash", "-o", "pipefail", "-c"]
