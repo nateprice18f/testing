@@ -1,5 +1,7 @@
 FROM ubuntu:18.04
 
+ENV TZ=America/New_York
+
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt-get update && \
