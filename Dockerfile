@@ -6,7 +6,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt-get update && \
-    apt-get install -y curl git gnupg 
+    apt-get install -y curl wget git gnupg 
 
 RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - 
 
