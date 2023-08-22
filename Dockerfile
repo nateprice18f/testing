@@ -1,6 +1,7 @@
 FROM ubuntu:18.04
 
 ENV TZ=America/New_York
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
