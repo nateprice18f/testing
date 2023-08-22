@@ -9,4 +9,5 @@ RUN npm install --unsafe-perm=true --allow-root
 EXPOSE 4000
 EXPOSE 3000
 
+CMD ["mongod"]
 CMD ["npm", "start"]
