@@ -1,4 +1,4 @@
-FROM natep18f/container-nodejs-test:9a2042c77fdcfe3526997f233c89c495c99f85a0
+FROM natep18f/container-nodejs-test:bbbb0ba5705f89630cb9eacd3bc404ce5f2df150
 
 RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
 
