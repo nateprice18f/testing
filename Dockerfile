@@ -5,6 +5,7 @@ ENV NODE_ENV=production
 
 RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
 WORKDIR /pa11y-dashboard
+WORKDIR /data/db
 
 RUN npm install --unsafe-perm=true --allow-root
 
@@ -39,6 +40,7 @@ RUN npm init -y &&  \
     && chown -R pptruser:pptruser /pa11y-dashboard/node_modules \
     && chown -R pptruser:pptruser /pa11y-dashboard/package.json \
     && chown -R pptruser:pptruser /pa11y-dashboard/package-lock.json
+    && chown -R pptruser:pptruser /data/db
 
 # Run everything after as non-privileged user.
 USER pptruser
