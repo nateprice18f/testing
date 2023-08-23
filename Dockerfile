@@ -27,8 +27,8 @@ RUN npm init -y &&  \
     && chown -R pptruser:pptruser /home/pptruser \
     && chown -R pptruser:pptruser /pa11y-dashboard/node_modules \
     && chown -R pptruser:pptruser /pa11y-dashboard/package.json \
-    && chown -R pptruser:pptruser /pa11y-dashboard/package-lock.json
-    #&& chown -R pptruser:pptruser /data/db
+    && chown -R pptruser:pptruser /pa11y-dashboard/package-lock.json \
+    && chown -R pptruser:pptruser /data/db
 
 # Run everything after as non-privileged user.
 USER pptruser
