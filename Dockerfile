@@ -3,6 +3,7 @@ FROM natep18f/container-nodejs-test:10c32f5c7a46b08c39319cd6df4623e31177a74c
 RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
 
 WORKDIR /pa11y-dashboard
+RUN npm install --unsafe-perm=true --allow-root
 
 RUN npm init -y &&  \
     npm i puppeteer --unsafe-perm=true \
@@ -16,8 +17,6 @@ RUN npm init -y &&  \
     && chown -R pptruser:pptruser /package-lock.json
 # Run everything after as non-privileged user.
 USER pptruser
-
-RUN npm install --unsafe-perm=true --allow-root
 
 EXPOSE 4000
 EXPOSE 3000
