@@ -5,8 +5,7 @@ RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
 WORKDIR /pa11y-dashboard
 RUN npm install --unsafe-perm=true --allow-root
 
-RUN cd /pa11y-dashboard && \
-    npm init -y &&  \
+RUN npm init -y &&  \
     npm i puppeteer@9.1.1 --unsafe-perm=true --allow-root \
     # Add user so we don't need --no-sandbox.
     # same layer as npm install to keep re-chowned files from using up several hundred MBs more space
