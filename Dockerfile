@@ -1,4 +1,4 @@
-FROM natep18f/container-nodejs-test:bbbb0ba5705f89630cb9eacd3bc404ce5f2df150
+FROM natep18f/container-nodejs-test:4e6a730d2864069f62b689346816c04d3f15fc66
 
 RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
 
@@ -10,4 +10,4 @@ EXPOSE 4000
 EXPOSE 3000
 
 CMD ["mongod"]
-CMD ["npm", "start"]
+CMD ["node", "index.js"]
