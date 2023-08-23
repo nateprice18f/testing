@@ -1,13 +1,27 @@
-FROM natep18f/container-nodejs-test:4e6a730d2864069f62b689346816c04d3f15fc66
+FROM natep18f/container-nodejs-test:10c32f5c7a46b08c39319cd6df4623e31177a74c
 
 RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
 
 WORKDIR /pa11y-dashboard
+
+RUN npm init -y &&  \
+    npm i puppeteer --unsafe-perm=true \
+    # Add user so we don't need --no-sandbox.
+    # same layer as npm install to keep re-chowned files from using up several hundred MBs more space
+    && groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
+    && mkdir -p /home/pptruser/Downloads \
+    && chown -R pptruser:pptruser /home/pptruser \
+    && chown -R pptruser:pptruser /node_modules \
+    && chown -R pptruser:pptruser /package.json \
+    && chown -R pptruser:pptruser /package-lock.json
+# Run everything after as non-privileged user.
+USER pptruser
 
 RUN npm install --unsafe-perm=true --allow-root
 
 EXPOSE 4000
 EXPOSE 3000
 
+CMD ["google-chrome-stable"]
 CMD ["mongod"]
 CMD ["node", "index.js"]
