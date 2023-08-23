@@ -21,11 +21,27 @@ RUN apt-get update && \
     apt-get install -y mongodb-org mongodb-org-server mongodb-org-shell mongodb-org-mongos mongodb-org-tools
     #apt-get install -y mongodb-org=4.4.1 mongodb-org-server=4.4.1 mongodb-org-shell=4.4.1 mongodb-org-mongos=4.4.1 mongodb-org-tools=4.4.1
 
+EXPOSE 27017
+CMD ["mongod"]
+
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get -y install nodejs && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN npm install 
 
-EXPOSE 27017
-CMD ["mongod"]
+RUN npm init -y &&  \
+    npm i puppeteer \
+    # Add user so we don't need --no-sandbox.
+    # same layer as npm install to keep re-chowned files from using up several hundred MBs more space
+    && groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
+    && mkdir -p /home/pptruser/Downloads \
+    && chown -R pptruser:pptruser /home/pptruser \
+    && chown -R pptruser:pptruser /node_modules \
+    && chown -R pptruser:pptruser /package.json \
+    && chown -R pptruser:pptruser /package-lock.json
+
+# Run everything after as non-privileged user.
+USER pptruser
+
+CMD ["google-chrome-stable"]
