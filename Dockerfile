@@ -1,22 +1,10 @@
-FROM natep18f/container-nodejs-test:10c32f5c7a46b08c39319cd6df4623e31177a74c
+FROM natep18f/container-nodejs-test:6f298fc592f313549f0e868d991e07e59dc7e7d2
 
-CMD ["mongod"]
 ENV NODE_ENV=production
 
 RUN git clone https://github.com/pa11y/pa11y-dashboard.git /pa11y-dashboard
 WORKDIR /pa11y-dashboard
-WORKDIR /data/db
-
 RUN npm install --unsafe-perm=true --allow-root
-
-RUN apt-get update \
-    && apt-get install -y wget gnupg \
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-    && apt-get update \
-    && apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 \
-      --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
 
 # If running Docker >= 1.13.0 use docker run's --init arg to reap zombie processes, otherwise
 # uncomment the following lines to have `dumb-init` as PID 1
@@ -40,13 +28,13 @@ RUN npm init -y &&  \
     && chown -R pptruser:pptruser /pa11y-dashboard/node_modules \
     && chown -R pptruser:pptruser /pa11y-dashboard/package.json \
     && chown -R pptruser:pptruser /pa11y-dashboard/package-lock.json
-    && chown -R pptruser:pptruser /data/db
+    #&& chown -R pptruser:pptruser /data/db
 
 # Run everything after as non-privileged user.
 USER pptruser
+CMD ["google-chrome-stable"]
 
 EXPOSE 4000
 EXPOSE 3000
 
-CMD ["google-chrome-stable"]
 CMD ["node", "index.js"]
