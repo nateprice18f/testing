@@ -4,6 +4,6 @@ RUN apt-get update -y && apt-get upgrade -y && apt-get install -y libnss3 libgco
 RUN git clone https://github.com/pa11y/dashboard.git && cd dashboard && npm i
 # this is required because it loads the correct configuration file
 ENV NODE_ENV ${NODE_ENV:-production}
-COPY production.json /dashboard/config/production.json
+#COPY production.json /dashboard/config/production.json
 WORKDIR /dashboard
 CMD PORT=4000 node index.js
